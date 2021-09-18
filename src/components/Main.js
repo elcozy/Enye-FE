@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Pagination, AllData } from "./Data";
+import { backup } from "./backupData";
 // import Search from "./Filter";
 import Loader from "./Loader";
 
@@ -22,6 +23,15 @@ function App() {
         setTimeout(() => {
           setLoading(false);
         }, 2000);
+      })
+      .catch((error) => {
+        setTimeout(() => {
+          setData(backup);
+          setInitialData(backup);
+          setLoading(false);
+        }, 2000);
+
+        console.error("Error:", error);
       });
   };
 
@@ -138,7 +148,7 @@ function App() {
     <div className="App">
       {!loading ? (
         <div className="data-body">
-          <h5 className="title">ENYE E-COMMERCE</h5>
+          <h5 className="title">TEST E-COMMERCE</h5>
           <div className="search-bar">
             <input
               className="form-control"
